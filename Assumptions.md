@@ -1,0 +1,3 @@
+- Only the first vote by a user should be recorded
+- All hits to a number should increment the count for that number
+- Space allowing, all names and times of post should be recorded, in order of earliest post first

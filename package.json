@@ -1,0 +1,35 @@
+{
+  "name": "comment-number-heatmap",
+  "version": "0.1.0",
+  "description": "A tool for visualizing a heatmap of random numbers chosen for a giveaway",
+  "engines": {
+    "node": "13.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r esm index.js",
+    "debug": "nodemon -r esm index.js",
+    "heroku-postbuild": "cd front-end && npm install && npm run build"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^2.5.6",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "mongodb": "^3.4.1",
+    "nodemon": "^2.0.3"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZPanic0/comment-number-heatmap"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
+}
