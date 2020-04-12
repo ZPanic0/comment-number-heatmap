@@ -3,23 +3,9 @@ import { PieChart, Pie, Cell, Tooltip } from 'recharts'
 import CustomTooltip from './CustomTooltip'
 
 export default class UserVotesPieChart extends Component {
-    state = {
-        layers: []
-    }
-
-    constructor(props) {
-        super(props)
-
-        this.buildLayers = this.buildLayers.bind(this)
-    }
-
-    componentWillMount() {
-        this.setState({ layers: this.buildLayers() })
-    }
-
     buildLayers() {
-        let layerData = [] //both?
-        let cellData = [] //maybe declare the size of this?
+        let layerData = new Array(100)
+        let cellData = new Array(100)
         let newLayers = []
         let innerRadius = 60
         let outerRadius = 80
@@ -31,7 +17,7 @@ export default class UserVotesPieChart extends Component {
             //If layer is fully represented in cellData, roll up layer
             if (previousLayerIndex < layerIndex) {
 
-                newLayers[layerIndex] = <Pie
+                newLayers[layerIndex - 1] = <Pie
                     key={`layer${layerIndex}`}
                     dataKey="value"
                     data={layerData}
@@ -44,8 +30,8 @@ export default class UserVotesPieChart extends Component {
                 </Pie>
 
                 //Clear layerData and cellData
-                layerData = []
-                cellData = []
+                layerData = new Array(100)
+                cellData = new Array(100)
 
                 //Update radii for next layer
                 innerRadius += 30
@@ -90,7 +76,7 @@ export default class UserVotesPieChart extends Component {
     render() {
         return (
             <PieChart width={this.props.canvasWidth} height={this.props.canvasHeight}>
-                {this.state.layers}
+                {this.buildLayers()}
                 <Tooltip
                     contentStyle={{
                         backgroundColor: 'rgba(255,255,255,0.75)',
