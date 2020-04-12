@@ -10,14 +10,14 @@ export default class UserVotesPieChart extends Component {
         let innerRadius = 60
         let outerRadius = 80
         let previousLayerIndex = 0
-        let layerIndex
+        let layerIndex = 0
         for (let [key, value] of Object.entries(this.props.rawData)) {
             layerIndex = (key - 1) / 100 << 0
 
             //If layer is fully represented in cellData, roll up layer
             if (previousLayerIndex < layerIndex) {
 
-                newLayers[layerIndex - 1] = <Pie
+                newLayers[layerIndex] = <Pie
                     key={`layer${layerIndex}`}
                     dataKey="value"
                     data={layerData}
