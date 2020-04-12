@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 import express from 'express'
 import path from 'path'
 import fs from 'fs'
+import reddit from 'snoowrap'
 
 const redditDataFilePath = process.env.REDDIT_FILE_PATH
 const redditSubmission = process.env.REDDIT_SUBMISSION
