@@ -15,7 +15,6 @@ const reddit = new Snoowrap({
   refreshToken: process.env.REFRESH_TOKEN
 })
 
-const redditSubmission = process.env.REDDIT_SUBMISSION
 const client = MongoClient(process.env.MONGODB_URI, { useUnifiedTopology: true })
 const PORT = process.env.PORT || 5000
 
@@ -39,7 +38,7 @@ express()
     console.log('Beginning reddit update operation.')
 
     let redditResult = await reddit
-      .getSubmission(redditSubmission)
+      .getSubmission(process.env.REDDIT_SUBMISSION)
       .expandReplies({ limit: Infinity, depth: 1 })
 
     console.log('Finished pulling data from reddit.')

@@ -8,9 +8,11 @@ export default class App extends Component {
       .then(response => response.json())
       .then(result => this.setState({ rawData: result }))
   }
+
   state = {
     rawData: null
   }
+  
   render() {
     return (
       <div className="App">
