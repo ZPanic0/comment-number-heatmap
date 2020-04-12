@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import UserVotesPieChart from './UserVotesPieChart'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  componentDidMount() {
+    fetch('calculatedData.json')
+      .then(response => response.json())
+      .then(result => this.setState({ rawData: result }))
+  }
+  state = {
+    rawData: null
+  }
+  render() {
+    return (
+      <div className="App">
+        {this.state.rawData && <UserVotesPieChart rawData={this.state.rawData} />}
+      </div>
+    )
+  }
 }
-
-export default App;
