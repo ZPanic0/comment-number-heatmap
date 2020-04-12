@@ -23,6 +23,8 @@ const PORT = process.env.PORT || 5000
 express()
   .use(express.static(path.join(__dirname, 'front-end/build')))
   .get('/getcomments/', async (req, res) => {
+    res.sendStatus(200)
+
     fs.writeFileSync(
       redditDataFilePath,
       await reddit
@@ -30,7 +32,8 @@ express()
         .expandReplies({ limit: Infinity, depth: 1 })
     )
 
-    res.sendStatus(200)
+    console.log("Finished pulling data from reddit without incident.")
+    console.log(`Saved to ${redditDataFilePath}`)
   })
   .get('/processcomments/', async (req, res) => {
     const data = (() => {
