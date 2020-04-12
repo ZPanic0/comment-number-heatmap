@@ -8,11 +8,10 @@ import fs from 'fs'
 import Snoowrap from 'snoowrap'
 
 const reddit = new Snoowrap({
-  userAgent: "test agent pls ignore",
-  clientId: process.env.CLIENTID,
-  clientSecret: process.env.CLIENTSECRET,
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD
+  userAgent: 'node:comment-number-heatmap:v1 (by /u/ZPanic0)',
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  refreshToken: process.env.REFRESH_TOKEN
 })
 
 const redditDataFilePath = process.env.REDDIT_FILE_PATH
