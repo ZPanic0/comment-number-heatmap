@@ -25,12 +25,11 @@ express()
   .get('/getcomments/', async (req, res) => {
     res.sendStatus(200)
 
-    fs.writeFileSync(
-      redditDataFilePath,
-      await reddit
-        .getSubmission(redditSubmission)
-        .expandReplies({ limit: Infinity, depth: 1 })
-    )
+    const redditResult = await reddit
+      .getSubmission(redditSubmission)
+      .expandReplies({ limit: Infinity, depth: 1 })
+
+    fs.writeFileSync(redditDataFilePath, JSON.stringify(redditResult))
 
     console.log("Finished pulling data from reddit without incident.")
     console.log(`Saved to ${redditDataFilePath}`)
