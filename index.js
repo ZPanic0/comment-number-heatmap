@@ -37,10 +37,10 @@ express()
     const redditStash = JSON.parse(fs.readFileSync(redditDataFilePath))
 
     for (const comment of redditStash.comments) {
-      //try to parse new vote
+      //Try to parse new vote
       const number = parseInt(comment.body)
 
-      //bail out if not a number or out of range
+      //Bail out if not a number or out of range
       if (isNaN(number) || number < 0 || number > 999) continue
 
       //User is new. Handle new entry
@@ -58,13 +58,13 @@ express()
       //User voted twice and this is the earlier vote. Keep the earlier vote and clean up the later one
       if (comment.created < loggedUsers[comment.author].created) {
 
-        //remove credit from later vote
+        //Remove credit from later vote
         data[number].splice(data[loggedUsers[comment.author].number].indexOf(comment.author), 1)
 
         //Update first vote time
         loggedUsers[comment.author].created = comment.created
 
-        //add credit for earlier vote
+        //Add credit for earlier vote
         data[number].push(comment.author)
         continue
       }
