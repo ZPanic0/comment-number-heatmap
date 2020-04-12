@@ -57,7 +57,14 @@ export default class UserVotesPieChart extends Component {
         return (
             <PieChart width={this.props.canvasWidth} height={this.props.canvasHeight}>
                 {layers}
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip
+                    contentStyle={{
+                        backgroundColor: 'rgba(255,255,255,0.75)',
+                        color: '#262626',
+                        maxWidth: '200px'
+                    }}
+                    content={<CustomTooltip />}
+                />
             </PieChart>
         )
     }
