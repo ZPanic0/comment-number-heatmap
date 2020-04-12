@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 import express from 'express'
+import compression from 'compression'
 import { MongoClient } from 'mongodb'
 import path from 'path'
 import Snoowrap from 'snoowrap'
@@ -23,6 +24,7 @@ let commentsCache
 client.connect()
 
 express()
+  .use(compression())
   .use(express.static(path.join(__dirname, 'front-end/build')))
   .get('/data/', async (req, res) => {
     commentsCache = commentsCache || await client

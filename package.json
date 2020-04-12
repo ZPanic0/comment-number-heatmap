@@ -12,6 +12,7 @@
     "heroku-postbuild": "cd front-end && npm install && npm run build"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "ejs": "^2.5.6",
     "esm": "^3.2.25",
