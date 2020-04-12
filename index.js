@@ -26,15 +26,12 @@ client.connect()
 express()
   .use(express.static(path.join(__dirname, 'front-end/build')))
   .get('/data/', async (req, res) => {
-    console.time('data')
-
     commentsCache = commentsCache || await client
       .db(process.env.DB_NAME)
       .collection('comments')
       .findOne({})
 
     res.json(commentsCache)
-    console.timeEnd('data')
   })
   .get('/getcomments/', async (req, res) => {
     res.sendStatus(200)

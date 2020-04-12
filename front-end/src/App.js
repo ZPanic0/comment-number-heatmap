@@ -4,7 +4,7 @@ import UserVotesPieChart from './UserVotesPieChart'
 
 export default class App extends Component {
   componentDidMount() {
-    fetch('calculatedData.json')
+    fetch('/data')
       .then(response => response.json())
       .then(result => this.setState({ rawData: result }))
   }
