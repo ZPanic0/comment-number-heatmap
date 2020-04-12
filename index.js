@@ -58,5 +58,9 @@ express()
       .replaceOne({}, processedComments, { upsert: true })
 
     console.log('Saved to mongodb.')
+
+    commentsCache = processedComments
+
+    console.log('Cached new comments.')
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
