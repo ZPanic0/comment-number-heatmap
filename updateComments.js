@@ -1,3 +1,4 @@
 const fetch = require('node-fetch')
 
-fetch('/getComments').then(() => console.log('Fetched /getComments endpoint on schedule.'))
+fetch('https://comment-number-heatmap.herokuapp.com/getcomments')
+    .then(() => console.log('Fetched /getComments endpoint on schedule.'))
