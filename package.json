@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r esm index.js",
-    "debug": "nodemon -r esm index.js",
+    "debug": "nodemon --inspect -r esm index.js",
     "heroku-postbuild": "cd front-end && npm install && npm run build"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "mongodb": "^3.4.1",
+    "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3"
   },
   "devDependencies": {
