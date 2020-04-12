@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 const style = {
-    backGroundColor: 'rgba(255,255,255,0.75',
+    backGroundColor: 'rgba(255,255,255,0.75)',
     color: '#262626',
     maxWidth: '200px'
 }
