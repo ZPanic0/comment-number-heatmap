@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RedditUrlEntryField from './RedditUrlEntryField'
+import ColorConfigurator from './ColorConfigurator'
 
 export default class Configuration extends Component {
 
@@ -10,6 +11,7 @@ export default class Configuration extends Component {
                     console.log(`isValid: ${isValid}\nshortKey: ${shortKey}`)
                 }}
             />
+            <ColorConfigurator />
         </div>
     }
 }
