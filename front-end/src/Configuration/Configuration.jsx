@@ -5,11 +5,22 @@ import PieChartConfigurator from './PieChartConfigurator'
 
 export default class Configuration extends Component {
     state = {
+        colors: {
+            startColor: { r: 0, g: 0, b: 0, a: 1 },
+            endColor: { r: 0, g: 0, b: 0, a: 1 },
+            steps: 4
+        },
         pieChart: {
             layers: 1,
             startRange: 1,
             endRange: 100
         }
+    }
+
+    onColorChange = (newState) => {
+        this.setState(prevState => ({
+            colors: { ...prevState.colors, ...newState }
+        }))
     }
 
     onPieChartChange = (newState) => {
@@ -25,7 +36,7 @@ export default class Configuration extends Component {
                     console.log(`isValid: ${isValid}\nshortKey: ${shortKey}`)
                 }}
             />
-            <ColorConfigurator />
+            <ColorConfigurator {...this.state.colors} onChange={this.onColorChange} />
             <PieChartConfigurator {...this.state.pieChart} onChange={this.onPieChartChange} />
         </div>
     }

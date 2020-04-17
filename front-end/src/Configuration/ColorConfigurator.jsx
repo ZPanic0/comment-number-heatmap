@@ -6,12 +6,6 @@ import ColorPicker from './ColorPicker'
 const { Row, Column } = Grid
 
 export default class ColorConfigurator extends Component {
-    state = {
-        startColor: { r: 0, g: 0, b: 0, a: 1 },
-        endColor: { r: 0, g: 0, b: 0, a: 1 },
-        steps: 4
-    }
-
     buildItems() {
         const options = []
 
@@ -21,11 +15,11 @@ export default class ColorConfigurator extends Component {
         return options
     }
 
-    startColorCallback = ({ rgb }) => this.setState({ startColor: rgb })
+    startColorCallback = ({ rgb }) => this.props.onChange({ startColor: rgb })
 
-    endColorCallback = ({ rgb }) => this.setState({ endColor: rgb })
+    endColorCallback = ({ rgb }) => this.props.onChange({ endColor: rgb })
 
-    stepsCallback = (e, { value }) => this.setState({ steps: value })
+    stepsCallback = (_, { value }) => this.props.onChange({ steps: value })
 
     render() {
         return <Grid>
@@ -33,14 +27,14 @@ export default class ColorConfigurator extends Component {
                 <Column>
                     <ColorPicker
                         title='Start'
-                        color={this.state.startColor}
+                        color={this.props.startColor}
                         callback={this.startColorCallback}
                     />
                 </Column>
                 <Column>
                     <ColorPicker
                         title='End'
-                        color={this.state.endColor}
+                        color={this.props.endColor}
                         callback={this.endColorCallback}
                     />
                 </Column>
@@ -54,9 +48,9 @@ export default class ColorConfigurator extends Component {
             </Row>
             <Row>
                 <ColorPreview
-                    start={this.state.startColor}
-                    end={this.state.endColor}
-                    steps={this.state.steps}
+                    start={this.props.startColor}
+                    end={this.props.endColor}
+                    steps={this.props.steps}
                 />
             </Row>
         </Grid>
