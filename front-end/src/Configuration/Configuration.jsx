@@ -5,6 +5,11 @@ import PieChartConfigurator from './PieChartConfigurator'
 
 export default class Configuration extends Component {
     state = {
+        url: {
+            isValid: null,
+            value: '',
+            shortKey: ''
+        },
         colors: {
             startColor: { r: 0, g: 0, b: 0, a: 1 },
             endColor: { r: 0, g: 0, b: 0, a: 1 },
@@ -15,6 +20,12 @@ export default class Configuration extends Component {
             startRange: 1,
             endRange: 100
         }
+    }
+
+    onUrlChange = (newState) => {
+        this.setState(prevState => ({
+            url: { ...prevState.url, ...newState }
+        }))
     }
 
     onColorChange = (newState) => {
@@ -31,11 +42,7 @@ export default class Configuration extends Component {
 
     render() {
         return <div>
-            <RedditUrlEntryField
-                callback={(isValid, shortKey) => {
-                    console.log(`isValid: ${isValid}\nshortKey: ${shortKey}`)
-                }}
-            />
+            <RedditUrlEntryField {...this.state.url} callback={this.onUrlChange} />
             <ColorConfigurator {...this.state.colors} onChange={this.onColorChange} />
             <PieChartConfigurator {...this.state.pieChart} onChange={this.onPieChartChange} />
         </div>

@@ -4,60 +4,44 @@ import { Label, Input, Icon } from 'semantic-ui-react'
 export default class RedditUrlEntryField extends Component {
     regex = /.*?reddit\.com\/r\/[A-z]+\/comments\/(?<shortKey>[a-z0-9]{6})\/.*/g
 
-    state = {
-        isValid: null,
-        shortKey: null
-    }
-
-    constructor(props) {
-        super(props)
-
-        this.validate = this.validate.bind(this)
-    }
-
-    validate({ target: { value } }) {
-        if (!value) {
-            this.setState({
-                isValid: null,
-                shortKey: null
-            })
-
-            this.props.callback && this.props.callback(false)
-            return
-        }
+    validate = ({ target: { value } }) => {
+        if (!value) return this.props.callback({
+            isValid: null,
+            value: value,
+            shortKey: ''
+        })
 
         const matches = Array.from(value.matchAll(this.regex), m => m[1])
 
-        if (!matches.length) {
-            this.setState({
-                isValid: false,
-                shortKey: null
-            })
-
-            this.props.callback && this.props.callback(false)
-            return
-        }
-
-        this.setState({
-            isValid: true,
-            shortKey: matches[0]
+        if (!matches.length) return this.props.callback({
+            isValid: false,
+            value: value,
+            shortKey: ''
         })
 
-        this.props.callback && this.props.callback(true, matches[0])
+        this.props.callback({
+            isValid: true,
+            value: value,
+            shortKey: matches[0]
+        })
+    }
+
+    resolveIcon = () => {
+        if (this.props.isValid == null) return null
+        if (!this.props.isValid) return <Icon name='times' color='red' />
+        return <Icon name='check' color='green' />
     }
 
     render() {
+        console.log(this.props)
         return <div className='ui labeled input'>
             <Label>Reddit Url:</Label>
             <Input
                 onChange={this.validate}
-                icon={() => {
-                    if (this.state.isValid == null) return null
-                    if (!this.state.isValid) return <Icon name='times' color='red' />
-                    return <Icon name='check' color='green' />
-                }}
+                value={this.props.url}
+                icon={this.resolveIcon}
             />
-            {this.state.isValid && <Label>{this.state.shortKey}</Label>}
+            {this.props.isValid && <Label>{this.props.shortKey}</Label>}
         </div>
     }
 }
