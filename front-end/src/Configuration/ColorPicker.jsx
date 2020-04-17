@@ -40,36 +40,4 @@ export default class ColorPicker extends Component {
             </div>}
         </div>
     }
-
-    Orender() {
-        return <div>
-            <div
-                onClick={this.handleClick}
-                style={{
-                    padding: '5px',
-                    background: '#fff',
-                    cursor: 'pointer',
-                }}>
-                <div
-                    style={{
-                        width: '36px',
-                        height: '14px',
-                        borderRadius: '2px',
-                        background: `rgba(${this.props.color.r}, ${this.props.color.g}, ${this.props.color.b}, ${this.props.color.a})`,
-                    }}
-                />
-            </div>
-            {this.state.displayColorPicker && <div
-                style={{
-                    position: 'absolute',
-                    zIndex: '2',
-                }}>
-                <ClickOverlay
-                    display={this.state.displayColorPicker}
-                    callback={this.handleClose}
-                />
-                <SketchPicker color={this.props.color} onChange={this.handleChange} />
-            </div>}
-        </div>
-    }
 }
