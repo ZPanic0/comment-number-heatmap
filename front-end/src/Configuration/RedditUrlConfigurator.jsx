@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Label, Input, Icon } from 'semantic-ui-react'
 
-export default class RedditUrlEntryField extends Component {
+export default class RedditUrlConfigurator extends Component {
     regex = /.*?reddit\.com\/r\/[A-z]+\/comments\/(?<shortKey>[a-z0-9]{6})\/.*/g
 
     validate = ({ target: { value } }) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RedditUrlEntryField from './RedditUrlEntryField'
+import RedditUrlConfigurator from './RedditUrlConfigurator'
 import ColorConfigurator from './ColorConfigurator'
 import PieChartConfigurator from './PieChartConfigurator'
 
@@ -42,7 +42,7 @@ export default class Configuration extends Component {
 
     render() {
         return <div>
-            <RedditUrlEntryField {...this.state.url} callback={this.onUrlChange} />
+            <RedditUrlConfigurator {...this.state.url} callback={this.onUrlChange} />
             <ColorConfigurator {...this.state.colors} onChange={this.onColorChange} />
             <PieChartConfigurator {...this.state.pieChart} onChange={this.onPieChartChange} />
         </div>
