@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Label, Input, Icon } from 'semantic-ui-react'
+import { Input, Icon } from 'semantic-ui-react'
 
 export default class RedditUrlConfigurator extends Component {
     regex = /.*?reddit\.com\/r\/[A-z]+\/comments\/(?<shortKey>[a-z0-9]{6})\/.*/g
@@ -33,15 +33,17 @@ export default class RedditUrlConfigurator extends Component {
     }
 
     render() {
-        console.log(this.props)
-        return <div className='ui labeled input'>
-            <Label>Reddit Url:</Label>
+        return <div style={this.props.style}>
             <Input
+                size='mini'
+                style={{ width: '100%' }}
+                label={this.props.isValid && this.props.shortKey}
+                labelPosition='right'
                 onChange={this.validate}
                 value={this.props.url}
                 icon={this.resolveIcon}
+                iconPosition='left'
             />
-            {this.props.isValid && <Label>{this.props.shortKey}</Label>}
         </div>
     }
 }

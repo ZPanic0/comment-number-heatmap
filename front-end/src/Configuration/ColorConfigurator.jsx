@@ -23,7 +23,7 @@ export default class ColorConfigurator extends Component {
 
     render() {
         return <Grid>
-            <Row columns={3}>
+            <Row columns={3} centered>
                 <Column>
                     <ColorPicker
                         title='Start'
@@ -41,18 +41,17 @@ export default class ColorConfigurator extends Component {
                 <Column>
                     <Dropdown
                         placeholder='Steps'
+                        defaultValue={this.props.steps}
                         onChange={this.stepsCallback}
                         options={this.buildItems()}
                     />
                 </Column>
             </Row>
-            <Row>
-                <ColorPreview
-                    start={this.props.startColor}
-                    end={this.props.endColor}
-                    steps={this.props.steps}
-                />
-            </Row>
+            <ColorPreview
+                start={this.props.startColor}
+                end={this.props.endColor}
+                steps={this.props.steps}
+            />
         </Grid>
     }
 }
